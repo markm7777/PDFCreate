@@ -1,8 +1,8 @@
 {
-  "name": "pdfkit-react-example",
+  "name": "PDFCreate",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://sturtevant.github.io/pdfkit-react-example",
+  "homepage": "https://github.com/markm7777/PDFCreate.git",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

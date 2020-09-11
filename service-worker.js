@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/markm7777/PDFCreate.git/precache-manifest.99c2fc8649eaedbf5287db7aaff97384.js"
+  "/markm7777/PDFCreate.git/precache-manifest.64f41bb4b6cbdac428f06239bf468fa4.js"
 );
 
 self.addEventListener('message', (event) => {

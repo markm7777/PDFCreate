@@ -1,23 +1,22 @@
 {
   "files": {
     "main.css": "/markm7777/PDFCreate.git/static/css/main.42e590ae.chunk.css",
-    "main.js": "/markm7777/PDFCreate.git/static/js/main.8d873d77.chunk.js",
-    "main.js.map": "/markm7777/PDFCreate.git/static/js/main.8d873d77.chunk.js.map",
+    "main.js": "/markm7777/PDFCreate.git/static/js/main.e2b57c3c.chunk.js",
+    "main.js.map": "/markm7777/PDFCreate.git/static/js/main.e2b57c3c.chunk.js.map",
     "runtime-main.js": "/markm7777/PDFCreate.git/static/js/runtime-main.0cc3aaec.js",
     "runtime-main.js.map": "/markm7777/PDFCreate.git/static/js/runtime-main.0cc3aaec.js.map",
-    "static/js/2.fe3756d5.chunk.js": "/markm7777/PDFCreate.git/static/js/2.fe3756d5.chunk.js",
-    "static/js/2.fe3756d5.chunk.js.map": "/markm7777/PDFCreate.git/static/js/2.fe3756d5.chunk.js.map",
+    "static/js/2.6f22c084.chunk.js": "/markm7777/PDFCreate.git/static/js/2.6f22c084.chunk.js",
+    "static/js/2.6f22c084.chunk.js.map": "/markm7777/PDFCreate.git/static/js/2.6f22c084.chunk.js.map",
     "index.html": "/markm7777/PDFCreate.git/index.html",
-    "precache-manifest.99c2fc8649eaedbf5287db7aaff97384.js": "/markm7777/PDFCreate.git/precache-manifest.99c2fc8649eaedbf5287db7aaff97384.js",
+    "precache-manifest.64f41bb4b6cbdac428f06239bf468fa4.js": "/markm7777/PDFCreate.git/precache-manifest.64f41bb4b6cbdac428f06239bf468fa4.js",
     "service-worker.js": "/markm7777/PDFCreate.git/service-worker.js",
     "static/css/main.42e590ae.chunk.css.map": "/markm7777/PDFCreate.git/static/css/main.42e590ae.chunk.css.map",
-    "static/js/2.fe3756d5.chunk.js.LICENSE.txt": "/markm7777/PDFCreate.git/static/js/2.fe3756d5.chunk.js.LICENSE.txt",
-    "static/media/ROBERTDEYL_Logo02.jpg": "/markm7777/PDFCreate.git/static/media/ROBERTDEYL_Logo02.64a7b67e.jpg"
+    "static/js/2.6f22c084.chunk.js.LICENSE.txt": "/markm7777/PDFCreate.git/static/js/2.6f22c084.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0cc3aaec.js",
-    "static/js/2.fe3756d5.chunk.js",
+    "static/js/2.6f22c084.chunk.js",
     "static/css/main.42e590ae.chunk.css",
-    "static/js/main.8d873d77.chunk.js"
+    "static/js/main.e2b57c3c.chunk.js"
   ]
 }

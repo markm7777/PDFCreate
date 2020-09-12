@@ -11,11 +11,11 @@ class SewerReport extends React.Component {
     this.state = {
       blob: '',
       date: '',
-      customerName: 'A Realtor',
-      address: '123 Maple Ln.',
-      city: 'Amytown',
+      customerName: '',
+      address: '',
+      city: '',
       state: 'CA',
-      zip: '99999',
+      zip: '',
       findings: '',
       videos: '',  
       recommendations: '',
@@ -67,11 +67,11 @@ class SewerReport extends React.Component {
     let doc = new PDFDocument();
     let stream = doc.pipe(blobStream());
   
-    doc.registerFont('Roboto', 'fonts/Roboto-Regular.ttf')
-    doc.registerFont('RobotoItalic', 'fonts/Roboto-Italic.ttf')
-    doc.registerFont('RobotoMedium', 'fonts/Roboto-Medium.ttf')
+    // doc.registerFont('Roboto', 'fonts/Roboto-Regular.ttf')
+    // doc.registerFont('RobotoItalic', 'fonts/Roboto-Italic.ttf')
+    // doc.registerFont('RobotoMedium', 'fonts/Roboto-Medium.ttf')
   
-    doc.font('Roboto')
+    doc.font('Helvetica')
 
     doc
       .rect(6, 6, 600, 108)
@@ -103,10 +103,10 @@ class SewerReport extends React.Component {
       .text('California State License No. 1020815', 145, 90)
 
     doc
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .fontSize(24)
       .text('Sewer Inspection Report', 190, 125)
-      .font('Roboto')
+      .font('Helvetica')
 
     let dateStr = this.state.date;
     let year = dateStr.slice(0,5);
@@ -114,31 +114,31 @@ class SewerReport extends React.Component {
 
     doc
       .fontSize(14)
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .text(`Date: `, 430, 170, {continued: true})
-      .font('RobotoMedium')
+      .font('Helvetica-Bold')
       .text(`${reformattedDate}`)
 
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .text(`Customer Name: `, 30, 190, {continued: true})
-      .font('RobotoMedium')
+      .font('Helvetica-Bold')
       .text(`${this.state.customerName}`)
       
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .text(`Job Address: `, 52, 210, {continued: true})
-      .font('RobotoMedium')        
+      .font('Helvetica-Bold')        
       .text(`${this.state.address}`)
-      .text(`${this.state.city}, ${this.state.state} ${this.state.zip}`, 135, 230)
+      .text(`${this.state.city}, ${this.state.state} ${this.state.zip}`, 138, 230)
 
     doc
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .text('The findings of this inspection are based on the opinion of the inspector and reflect the conditions discovered at the time of inspection only.  We cannot be held liable or responsible for whatever may happen after the inspection.  Any recommended repairs should be performed immediately in order to prevent possible property damage.', 30, 260, {width: 550})
       .text('Note: This inspection is for the sewer line specifically and does not cover any piping inside or under the house.', 30, 350, {width: 550})   
-      .font('Roboto')
+      .font('Helvetica')
 
     doc
       .fontSize(18)
-      .text('Findings                                                                                                   ',30, 400, {underline: true}) 
+      .text('Findings                                                                                        ',30, 400, {underline: true}) 
 
     doc
       .fontSize(12)
@@ -153,7 +153,7 @@ class SewerReport extends React.Component {
 
     doc
       .fontSize(18)
-      .text('Videos*                                                                                                    ',30, 50, {underline: true}) 
+      .text('Videos*                                                                                         ',30, 50, {underline: true}) 
   
     doc
       .fontSize(12)
@@ -162,30 +162,30 @@ class SewerReport extends React.Component {
 
     doc
       .fillColor('black')
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .text('*The YouTube link(s) provided are set to “unlisted” for privacy.  (Only the person receiving the email link can view the video.  It will not show up in a YouTube search.)', 30, 155)
-      .font('Roboto')
+      .font('Helvetica')
 
     doc
       .fontSize(18)
-      .text('Recommendations                                                                                ',30, 210, {underline: true}) 
+      .text('Recommendations                                                                       ',30, 210, {underline: true}) 
       
     doc
       .fontSize(12)
       .text(`${this.state.recommendations}`, 30, 240)
 
     doc
-      .font('RobotoItalic')
+      .font('Helvetica-Oblique')
       .text(`Note: If a perfect sewer line is desired, then a replacement of the four-inch clay piping on the property should be considered ($${this.state.sewerReplacementCost}). With this option we would still need to continue the inspection of the remaining piping going into the street.`, 30, 510)
-      .font('Roboto')
+      .font('Helvetica')
 
     doc
       .fontSize(18)
-      .text('Payment                                                                                                  ',30, 580, {underline: true}) 
+      .text('Payment                                                                                       ',30, 580, {underline: true}) 
 
     doc
       .fontSize(12)
-      .text(`Total paid for sewer inspection: $ ${this.state.payment} (${this.state.paymentMethod == 'cash' ? 'cash' : `check # ${this.state.checkNo}`})`,30, 610) 
+      .text(`Total paid for sewer inspection: $ ${this.state.payment} (${this.state.paymentMethod === 'cash' ? 'cash' : `check # ${this.state.checkNo}`})`,30, 610) 
 
     doc
       .fontSize(10)

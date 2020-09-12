@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/markm7777/PDFCreate/static/css/main.42e590ae.chunk.css",
-    "main.js": "/markm7777/PDFCreate/static/js/main.1bd281c4.chunk.js",
-    "main.js.map": "/markm7777/PDFCreate/static/js/main.1bd281c4.chunk.js.map",
+    "main.js": "/markm7777/PDFCreate/static/js/main.0cdc496d.chunk.js",
+    "main.js.map": "/markm7777/PDFCreate/static/js/main.0cdc496d.chunk.js.map",
     "runtime-main.js": "/markm7777/PDFCreate/static/js/runtime-main.4426e0e7.js",
     "runtime-main.js.map": "/markm7777/PDFCreate/static/js/runtime-main.4426e0e7.js.map",
-    "static/js/2.b6e56130.chunk.js": "/markm7777/PDFCreate/static/js/2.b6e56130.chunk.js",
-    "static/js/2.b6e56130.chunk.js.map": "/markm7777/PDFCreate/static/js/2.b6e56130.chunk.js.map",
+    "static/js/2.b48a0b07.chunk.js": "/markm7777/PDFCreate/static/js/2.b48a0b07.chunk.js",
+    "static/js/2.b48a0b07.chunk.js.map": "/markm7777/PDFCreate/static/js/2.b48a0b07.chunk.js.map",
     "index.html": "/markm7777/PDFCreate/index.html",
-    "precache-manifest.255c49ce70afb1e032be127989ac3773.js": "/markm7777/PDFCreate/precache-manifest.255c49ce70afb1e032be127989ac3773.js",
+    "precache-manifest.d49e36c2f044b963f72cc7b154751d65.js": "/markm7777/PDFCreate/precache-manifest.d49e36c2f044b963f72cc7b154751d65.js",
     "service-worker.js": "/markm7777/PDFCreate/service-worker.js",
     "static/css/main.42e590ae.chunk.css.map": "/markm7777/PDFCreate/static/css/main.42e590ae.chunk.css.map",
-    "static/js/2.b6e56130.chunk.js.LICENSE.txt": "/markm7777/PDFCreate/static/js/2.b6e56130.chunk.js.LICENSE.txt",
+    "static/js/2.b48a0b07.chunk.js.LICENSE.txt": "/markm7777/PDFCreate/static/js/2.b48a0b07.chunk.js.LICENSE.txt",
     "static/media/ROBERTDEYL_Logo02.jpg": "/markm7777/PDFCreate/static/media/ROBERTDEYL_Logo02.64a7b67e.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.4426e0e7.js",
-    "static/js/2.b6e56130.chunk.js",
+    "static/js/2.b48a0b07.chunk.js",
     "static/css/main.42e590ae.chunk.css",
-    "static/js/main.1bd281c4.chunk.js"
+    "static/js/main.0cdc496d.chunk.js"
   ]
 }

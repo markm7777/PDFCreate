@@ -64,7 +64,7 @@ class SewerReport extends React.Component {
       state: 'CA',
       zip: '',
       findings: '',
-      videos: [],  
+      videos: [''],  
       recommendations: '',
       payment: '275.00',
       paymentMethod: 'cash',

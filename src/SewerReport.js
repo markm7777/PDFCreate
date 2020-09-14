@@ -17,14 +17,34 @@ class SewerReport extends React.Component {
       state: 'CA',
       zip: '',
       findings: '',
-      videos: '',  
+      videos: [''],  
       recommendations: '',
       payment: '275.00',
-      paymentMethod: '',
+      paymentMethod: 'cash',
       checkNo: '',
       sewerReplacementCost: '7000.00'
     }
   }
+
+  handleAddVideo = (i) => {
+    this.setState({videos: [...this.state.videos, '']});
+  }
+
+  handleDeleteVideo = (i) => {
+    if (this.state.videos.length > 1) {
+      let newArr = this.state.videos.filter((item, index) => index !== i)
+      this.setState({videos: newArr});
+    }
+
+    // this.setState({videos: [...this.state.videos, '']});
+  }
+
+  handleVideoChange = (e, index) => {
+    let videoArr = [...this.state.videos];
+    videoArr[index] = e.currentTarget.value;
+    this.setState({videos: videoArr});
+  }
+
 
   handleCreatePreview = () => {
     this.createBlob('');
@@ -44,10 +64,11 @@ class SewerReport extends React.Component {
       state: 'CA',
       zip: '',
       findings: '',
-      videos: '',  
+      videos: [],  
       recommendations: '',
       payment: '275.00',
-      paymentMethod: '',
+      paymentMethod: 'cash',
+      checkNo: '',
       sewerReplacementCost: '7000.00'
     })
   }
@@ -63,13 +84,9 @@ class SewerReport extends React.Component {
     window.URL.revokeObjectURL(url);
   }
  
-  createBlob(fileName) {
+  createBlob = (fileName) => {
     let doc = new PDFDocument();
     let stream = doc.pipe(blobStream());
-  
-    // doc.registerFont('Roboto', 'fonts/Roboto-Regular.ttf')
-    // doc.registerFont('RobotoItalic', 'fonts/Roboto-Italic.ttf')
-    // doc.registerFont('RobotoMedium', 'fonts/Roboto-Medium.ttf')
   
     doc.font('Helvetica')
 
@@ -154,16 +171,29 @@ class SewerReport extends React.Component {
     doc
       .fontSize(18)
       .text('Videos*                                                                                         ',30, 50, {underline: true}) 
-  
-    doc
-      .fontSize(12)
-      .fillColor('blue')
-      .text(`${this.state.videos}`, 30, 80, {link:`${this.state.videos}`, underline: true});
+
+    let vPos = 80;
+    this.state.videos.map((item, i) => {
+      if (i !== 0) {
+        vPos += doc.heightOfString(this.state.videos[i - 1], {width: 600}) + 5;
+      }
+      return(
+        doc
+        .fontSize(12)
+        .fillColor('blue')
+        .text(`${item}`, 30, vPos, {link:`${item}`, underline: true})
+      )
+    })
+        
+    // doc
+    //   .fontSize(12)
+    //   .fillColor('blue')
+    //   .text(`${this.state.videos}`, 30, 80, {link:`${this.state.videos}`, underline: true});
 
     doc
       .fillColor('black')
       .font('Helvetica-Oblique')
-      .text('*The YouTube link(s) provided are set to “unlisted” for privacy.  (Only the person receiving the email link can view the video.  It will not show up in a YouTube search.)', 30, 155)
+      .text('*The YouTube link(s) provided are set to “unlisted” for privacy.  (Only the person receiving the email link can view the video.  It will not show up in a YouTube search.)', 30, 165)
       .font('Helvetica')
 
     doc
@@ -176,7 +206,7 @@ class SewerReport extends React.Component {
 
     doc
       .font('Helvetica-Oblique')
-      .text(`Note: If a perfect sewer line is desired, then a replacement of the four-inch clay piping on the property should be considered ($${this.state.sewerReplacementCost}). With this option we would still need to continue the inspection of the remaining piping going into the street.`, 30, 510)
+      .text(`Note: If a perfect sewer line is desired, then a replacement of the four-inch clay piping on the property should be considered ($${this.state.sewerReplacementCost}). With this option we would still need to continue the inspection of the remaining piping going into the street.`, 30, 520)
       .font('Helvetica')
 
     doc
@@ -252,8 +282,20 @@ class SewerReport extends React.Component {
 
           <h2>Findings</h2>
           <textarea style={{width: '845px', height: '500vh', minHeight: '200px', resize:'none'}} onChange={(e) => this.setState({findings: e.currentTarget.value})} value={this.state.findings}></textarea>
+
           <h2>Videos</h2>
-          <textarea style={{width: '845px', height: '60px', minHeight: '75px', resize:'none'}} onChange={(e) => this.setState({videos: e.currentTarget.value})} value={this.state.videos}></textarea>
+          {this.state.videos.map((item, i) => {
+            return (
+              <div id='videoEntryDiv' key={i}>
+                <input style={{width: '780px'}} onChange={(e) => this.handleVideoChange(e, i)} value={this.state.videos[i]}></input>            
+                <button className='videoButtons' onClick={() => this.handleAddVideo(i)}>+</button>
+                <button className='videoButtons' onClick={() => this.handleDeleteVideo(i)}>-</button>
+              </div>
+            )
+          })}
+
+
+          {/* <textarea style={{width: '845px', height: '60px', minHeight: '75px', resize:'none'}} onChange={(e) => this.setState({videos: e.currentTarget.value})} value={this.state.videos}></textarea> */}
 
           <h2>Recommendations</h2>
           <textarea style={{width: '845px', height: '100px', minHeight: '200px', resize:'none'}} onChange={(e) => this.setState({recommendations: e.currentTarget.value})} value={this.state.recommendations}></textarea>
@@ -266,17 +308,17 @@ class SewerReport extends React.Component {
           <div>
             <label>Total paid for sewer inspection: $ </label>
             <input style={{width: '70px', marginTop: '5px', marginRight: '20px'}} onChange={(e) => this.setState({payment: e.currentTarget.value})} value={this.state.payment}></input>
-            <input type="radio" id="cash" name="payment" onClick={() => this.setState({paymentMethod: 'cash'})}></input>
+            <input type="radio" id="cash" name="payment" onClick={() => this.setState({paymentMethod: 'cash'})} onChange={e => {}} checked={this.state.paymentMethod === 'cash'}></input>
             <label htmlFor="cash">Cash</label>
-            <input type="radio" id="check" name="payment" onClick={() => this.setState({paymentMethod: 'check'})}></input>
+            <input type="radio" id="check" name="payment" onClick={() => this.setState({paymentMethod: 'check'})} onChange={e => {}} checked={this.state.paymentMethod === 'check'}></input>
             <label htmlFor="check">Check  #</label>
-            <input id='checkNo' style={{width: '70px', marginLeft: '5px'}} onChange={(e) => this.setState({checkNo: e.currentTarget.value})}></input>
+            <input id='checkNo' style={{width: '70px', marginLeft: '5px'}} onChange={(e) => this.setState({checkNo: e.currentTarget.value})} value={this.state.checkNo}></input>
           </div>
 
           <div id='buttonDiv'>
-            <button onClick={this.handleCreatePreview}>Preview Report</button>
-            <button onClick={this.handleCreatePDF}>Save As PDF</button>
-            <button onClick={this.handleClearForm}>Clear/Reset Form</button>
+            <button className='footerButton' onClick={this.handleCreatePreview}>Preview Report</button>
+            <button className='footerButton' onClick={this.handleCreatePDF}>Save As PDF</button>
+            <button className='footerButton' onClick={this.handleClearForm}>Clear/Reset Form</button>
           </div>
 
         </div>

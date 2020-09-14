@@ -35,8 +35,6 @@ class SewerReport extends React.Component {
       let newArr = this.state.videos.filter((item, index) => index !== i)
       this.setState({videos: newArr});
     }
-
-    // this.setState({videos: [...this.state.videos, '']});
   }
 
   handleVideoChange = (e, index) => {
@@ -44,7 +42,6 @@ class SewerReport extends React.Component {
     videoArr[index] = e.currentTarget.value;
     this.setState({videos: videoArr});
   }
-
 
   handleCreatePreview = () => {
     this.createBlob('');
@@ -71,6 +68,17 @@ class SewerReport extends React.Component {
       checkNo: '',
       sewerReplacementCost: '7000.00'
     })
+  }
+
+  componentDidMount() {
+    let today = new Date();
+    let date = today.getDate();
+    date = date.toString().length === 1 ? ('0' + date) : date;
+    console.log(date.toString().length);
+    let month = today.getMonth() + 1;
+    month = month.toString().length === 1 ? ('0' + month) : month;
+    let temp = `${today.getFullYear()}-${month}-${date}`;
+    this.setState({date: temp});
   }
 
   saveData = (blob, fileName) => {
@@ -185,11 +193,6 @@ class SewerReport extends React.Component {
       )
     })
         
-    // doc
-    //   .fontSize(12)
-    //   .fillColor('blue')
-    //   .text(`${this.state.videos}`, 30, 80, {link:`${this.state.videos}`, underline: true});
-
     doc
       .fillColor('black')
       .font('Helvetica-Oblique')
@@ -250,8 +253,7 @@ class SewerReport extends React.Component {
           <fieldset>
             <div>
               <label className='alignedLabels'>Date:</label>
-              {/* <input type='date' style={{width: '200px'}} onChange={this.handleDateChange} value={this.state.date}></input> */}
-              <input type='date' style={{width: '200px'}} onChange={(e) => this.setState({date: e.currentTarget.value})} value={this.state.date}></input>
+              <input id='date' type='date' style={{width: '200px'}} onChange={(e) => this.setState({date: e.currentTarget.value})} value={this.state.date}></input>
               
             </div>
             <div>
@@ -294,9 +296,6 @@ class SewerReport extends React.Component {
             )
           })}
 
-
-          {/* <textarea style={{width: '845px', height: '60px', minHeight: '75px', resize:'none'}} onChange={(e) => this.setState({videos: e.currentTarget.value})} value={this.state.videos}></textarea> */}
-
           <h2>Recommendations</h2>
           <textarea style={{width: '845px', height: '100px', minHeight: '200px', resize:'none'}} onChange={(e) => this.setState({recommendations: e.currentTarget.value})} value={this.state.recommendations}></textarea>
           <div>
@@ -320,7 +319,6 @@ class SewerReport extends React.Component {
             <button className='footerButton' onClick={this.handleCreatePDF}>Save As PDF</button>
             <button className='footerButton' onClick={this.handleClearForm}>Clear/Reset Form</button>
           </div>
-
         </div>
 
         <div id='sewerReportPreviewDiv'>

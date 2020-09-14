@@ -74,11 +74,9 @@ class SewerReport extends React.Component {
     let today = new Date();
     let date = today.getDate();
     date = date.toString().length === 1 ? ('0' + date) : date;
-    console.log(date.toString().length);
     let month = today.getMonth() + 1;
     month = month.toString().length === 1 ? ('0' + month) : month;
-    let temp = `${today.getFullYear()}-${month}-${date}`;
-    this.setState({date: temp});
+    this.setState({date: `${today.getFullYear()}-${month}-${date}`});
   }
 
   saveData = (blob, fileName) => {

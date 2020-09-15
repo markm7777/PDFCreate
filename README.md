@@ -1,7 +1,7 @@
 # PDFCreate
-This is a simple React app to accept user input and create a pdf report from that data using [PdfKit] (https://pdfkit.org/). 
+This is a simple React app to accept user input and create a pdf report from that data using 'PdfKit' (https://pdfkit.org/). 
 
-It is based on [pdfkit-react-example] (https://sturtevant.github.io/pdfkit-react-example/) which is bootstrapped by [react-app-rewired] (https://www.npmjs.com/package/react-app-rewired) 
+It is based on [pdfkit-react-example](https://sturtevant.github.io/pdfkit-react-example/) which is bootstrapped by 'react-app-rewired' (https://www.npmjs.com/package/react-app-rewired) 
 
 [Live preview here.](https://sturtevant.github.io/pdfkit-react-example/)
 

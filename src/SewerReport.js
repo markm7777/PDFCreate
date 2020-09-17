@@ -77,6 +77,23 @@ class SewerReport extends React.Component {
     let month = today.getMonth() + 1;
     month = month.toString().length === 1 ? ('0' + month) : month;
     this.setState({date: `${today.getFullYear()}-${month}-${date}`});
+
+
+    // const capitalize = ([firstLetter, ...restOfWord]) => {
+    //   return (
+    //     firstLetter.toUpperCase() + restOfWord.join('')
+    //   )
+    // }
+
+    const capitalize = ([firstLetter, second, ...restof]) => {
+      return (
+        firstLetter.toUpperCase() 
+      )
+    }
+
+    console.log(capitalize('hello'));
+
+    let i = 0;
   }
 
   saveData = (blob, fileName) => {

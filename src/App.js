@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import SewerReport from './SewerReport.js';
+import SewerReportHooks from './SewerReportHooks.js';
 
 function App() {
 
   return (
     <div id='mainDiv'>
-      <SewerReport></SewerReport>
+      <SewerReportHooks></SewerReportHooks>
     </div>
   );
 }

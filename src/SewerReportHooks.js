@@ -19,7 +19,6 @@ function SewerReportHooks() {
   const [videos, setVideos] = useState(['']);
   const [recommendations, setRecommendations] = useState('');
   const [payment, setPayment] = useState('275.00');
-
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const [checkNo, setCheckNo] = useState('');
   const [sewerReplacementCost, setSewerReplacementCost] = useState('7000.00');
@@ -74,7 +73,7 @@ function SewerReportHooks() {
     let month = today.getMonth() + 1;
     month = month.toString().length === 1 ? ('0' + month) : month;
     setDate(`${today.getFullYear()}-${month}-${date}`);
-  })
+  }, [])
 
   const saveData = (blob, fileName) => {
     const a = document.createElement("a");

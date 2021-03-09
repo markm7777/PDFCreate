@@ -1,0 +1,64 @@
+.modal {
+  /* display: none; Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 4px solid #0000ff;
+  width: 60%; /* Could be more or less, depending on screen size */
+  color: black;
+}
+
+.inputGroup {
+  text-align: left;
+}
+
+.inputDiv {
+  margin-top: 10px;
+  vertical-align: text-top;  
+}
+
+.modal-input {
+  width: 70%;
+}
+
+#message {
+  height: 100px;
+  margin-top: 10px;
+  vertical-align: text-top;  
+}
+
+.buttonGroup {
+  margin-top: 30px;
+}
+
+button {
+  margin: 5px;
+}
+
+.modal-label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+  font-size: 12pt;
+  padding-right: 20px;
+}
+
+.modal-p {
+  margin: 0;
+  padding: 0;
+  border: 4px solid #0000ff;
+  background-color: blue;
+  color: white;
+}

@@ -3,13 +3,14 @@ import logo from './ROBERTDEYL_Logo02.jpg';
 import './register-files';
 import {useState, useEffect} from 'react';
 import RDEmail from './Email.js';
+import {useContext} from 'react';
+import {sewerReportContext} from './SewerReportWithSplitPane.js';
 
 const PDFDocument = require('pdfkit').default;
 const blobStream = require('blob-stream');
 
-function SewerReportHooks() {
-
-  const [blob, setBlob] = useState('');
+const SewerReportInput = () => {
+  // const [blob, setBlob] = useState('');
   const [date, setDate] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [address, setAddress] = useState('');
@@ -25,7 +26,9 @@ function SewerReportHooks() {
   const [sewerReplacementCost, setSewerReplacementCost] = useState('7000.00');
   const [showEmail, setShowEmail] = useState(false);
 
-    const handleAddVideo = (i) => {
+  const {setBlob} = useContext(sewerReportContext);
+
+  const handleAddVideo = (i) => {
     setVideos([...videos, '']);
   }
 
@@ -240,103 +243,89 @@ function SewerReportHooks() {
   }    
 
   return (
-    <div id='sewerReportDiv'>
-      <div id='sewerReportInputDiv'>
-        <div id='headerDiv'>
-          <div id='imageDiv'>
-            <img src={logo} className="App-logo" alt="logo" width='106px' height='106px'/>
-          </div>
-          <div id='titleDiv'>
-            <h1 style={{paddingTop: '10px'}}>Robert Deyl Plumbing, Inc.</h1>
-            <h3>Sewer Report</h3>
-          </div>
-        </div>  
-        <br/>
-        <fieldset>
-          <div>
-            <label className='alignedLabels'>Date:</label>
-            <input id='date' type='date' style={{width: '200px'}} onChange={(e) => setDate(e.currentTarget.value)} value={date}></input>
-            
-          </div>
-          <div>
-            <label className='alignedLabels'>Customer Name:</label>
-            <input style={{width: '650px', marginTop: '5px'}} onChange={(e) => setCustomerName(e.currentTarget.value)} value={customerName}></input>
-          </div>
-        </fieldset>
-
-        <fieldset style={{ marginTop: '10px'}}>
-          <legend style={{color: 'white'}}>Job Address</legend>
-          <div>
-            <label className='alignedLabels'>Address:</label>
-            <input style={{width: '650px', marginTop: '0px'}} onChange={(e) => setAddress(e.currentTarget.value)} value={address}></input>
-          </div>
-          <div>
-            <label className='alignedLabels'>City:</label>
-            <input style={{width: '650px', marginTop: '5px'}} onChange={(e) => setCity(e.currentTarget.value)} value={city}></input>
-          </div>
-          <div>
-            <label className='alignedLabels'>State:</label>
-            <input style={{width: '50px', marginTop: '5px'}} onChange={(e) => setState(e.currentTarget.value)} value={state}></input>
-          </div>
-          <div>
-            <label className='alignedLabels'>Zip Code:</label>
-            <input style={{width: '50px', marginTop: '5px'}} onChange={(e) => setZip(e.currentTarget.value)} value={zip}></input>
-          </div>
-        </fieldset>
-
-        <h2>Findings</h2>
-        <textarea style={{width: '845px', height: '500vh', minHeight: '200px', resize:'none'}} onChange={(e) => setFindings(e.currentTarget.value)} value={findings}></textarea>
-
-        <h2>Videos</h2>
-        {videos.map((item, i) => {
-          return (
-            <div id='videoEntryDiv' key={i}>
-              <input style={{width: '765px'}} onChange={(e) => handleVideoChange(e, i)} value={videos[i]}></input>            
-              <button className='videoButtons' onClick={() => handleAddVideo(i)}>+</button>
-              <button className='videoButtons' onClick={() => handleDeleteVideo(i)}>-</button>
-            </div>
-          )
-        })}
-
-        <h2>Recommendations</h2>
-        <textarea style={{width: '845px', height: '100px', minHeight: '200px', resize:'none'}} onChange={(e) => setRecommendations(e.currentTarget.value)} value={recommendations}></textarea>
+    <div id='sewerReportInputDiv'>
+      <div id='headerDiv'>
+        <div id='imageDiv'>
+          <img src={logo} className="App-logo" alt="logo" width='106px' height='106px'/>
+        </div>
+        <div id='titleDiv'>
+          <h1 style={{paddingTop: '10px'}}>Robert Deyl Plumbing, Inc.</h1>
+          <h3>Sewer Report</h3>
+        </div>
+      </div>  
+      <br/>
+      <fieldset>
         <div>
-          <label id='totalReplacementCostLabel'>Total sewer replacement cost: $</label>
-          <input style={{width: '70px', marginTop: '5px'}} onChange={(e) => setSewerReplacementCost(e.currentTarget.value)} value={sewerReplacementCost}></input>
+          <label className='alignedLabels'>Date:</label>
+          <input id='date' type='date' style={{width: '200px'}} onChange={(e) => setDate(e.currentTarget.value)} value={date}></input>
+          
         </div>
-
-        <h2>Payment</h2>
         <div>
-          <label>Total paid for sewer inspection: $ </label>
-          <input style={{width: '70px', marginTop: '5px', marginRight: '20px'}} onChange={(e) => setPayment(e.currentTarget.value)} value={payment}></input>
-          <input type="radio" id="cash" name="payment" onClick={() => setPaymentMethod('cash')} onChange={e => {}} checked={paymentMethod === 'cash'}></input>
-          <label htmlFor="cash">Cash</label>
-          <input type="radio" id="check" name="payment" onClick={() => setPaymentMethod('check')} onChange={e => {}} checked={paymentMethod === 'check'}></input>
-          <label htmlFor="check">Check  #</label>
-          <input id='checkNo' style={{width: '70px', marginLeft: '5px'}} onChange={(e) => setCheckNo(e.currentTarget.value)} value={checkNo}></input>
+          <label className='alignedLabels'>Customer Name:</label>
+          <input style={{width: '650px', marginTop: '5px'}} onChange={(e) => setCustomerName(e.currentTarget.value)} value={customerName}></input>
         </div>
+      </fieldset>
 
-        <div id='buttonDiv'>
-          <button className='footerButton' onClick={handleCreatePreview}>Preview Report</button>
-          <button className='footerButton' onClick={handleCreatePDF}>Save As PDF</button>
-          <button className='footerButton' onClick={handleClearForm}>Clear/Reset Form</button>
-          <button className='footerButton' onClick={handleOpenEmail}>Email Report...</button>
+      <fieldset style={{ marginTop: '10px'}}>
+        <legend style={{color: 'white'}}>Job Address</legend>
+        <div>
+          <label className='alignedLabels'>Address:</label>
+          <input style={{width: '650px', marginTop: '0px'}} onChange={(e) => setAddress(e.currentTarget.value)} value={address}></input>
         </div>
+        <div>
+          <label className='alignedLabels'>City:</label>
+          <input style={{width: '650px', marginTop: '5px'}} onChange={(e) => setCity(e.currentTarget.value)} value={city}></input>
+        </div>
+        <div>
+          <label className='alignedLabels'>State:</label>
+          <input style={{width: '50px', marginTop: '5px'}} onChange={(e) => setState(e.currentTarget.value)} value={state}></input>
+        </div>
+        <div>
+          <label className='alignedLabels'>Zip Code:</label>
+          <input style={{width: '50px', marginTop: '5px'}} onChange={(e) => setZip(e.currentTarget.value)} value={zip}></input>
+        </div>
+      </fieldset>
+
+      <h2>Findings</h2>
+      <textarea style={{width: '845px', height: '50vh', minHeight: '200px', resize:'none'}} onChange={(e) => setFindings(e.currentTarget.value)} value={findings}></textarea>
+
+      <h2>Videos</h2>
+      {videos.map((item, i) => {
+        return (
+          <div id='videoEntryDiv' key={i}>
+            <input style={{width: '765px'}} onChange={(e) => handleVideoChange(e, i)} value={videos[i]}></input>            
+            <button className='videoButtons' onClick={() => handleAddVideo(i)}>+</button>
+            <button className='videoButtons' onClick={() => handleDeleteVideo(i)}>-</button>
+          </div>
+        )
+      })}
+
+      <h2>Recommendations</h2>
+      <textarea style={{width: '845px', height: '100px', minHeight: '200px', resize:'none'}} onChange={(e) => setRecommendations(e.currentTarget.value)} value={recommendations}></textarea>
+      <div>
+        <label id='totalReplacementCostLabel'>Total sewer replacement cost: $</label>
+        <input style={{width: '70px', marginTop: '5px'}} onChange={(e) => setSewerReplacementCost(e.currentTarget.value)} value={sewerReplacementCost}></input>
       </div>
 
-      <div className={'resizer'}></div>
-
-      <div id='sewerReportPreviewDiv'>
-        <h2>Preview</h2>
-        <iframe title="preview" src={blob} width="600" height="725"></iframe>;
+      <h2>Payment</h2>
+      <div>
+        <label>Total paid for sewer inspection: $ </label>
+        <input style={{width: '70px', marginTop: '5px', marginRight: '20px'}} onChange={(e) => setPayment(e.currentTarget.value)} value={payment}></input>
+        <input type="radio" id="cash" name="payment" onClick={() => setPaymentMethod('cash')} onChange={e => {}} checked={paymentMethod === 'cash'}></input>
+        <label htmlFor="cash">Cash</label>
+        <input type="radio" id="check" name="payment" onClick={() => setPaymentMethod('check')} onChange={e => {}} checked={paymentMethod === 'check'}></input>
+        <label htmlFor="check">Check  #</label>
+        <input id='checkNo' style={{width: '70px', marginLeft: '5px'}} onChange={(e) => setCheckNo(e.currentTarget.value)} value={checkNo}></input>
       </div>
 
-      {/* <ModalDialog show={showModal} close={handleCloseModal} send={(e) => handleSendEmail(e)}></ModalDialog> */}
-
-      {showEmail ? <RDEmail close={handleCloseEmail} handleCreatePDF={() => handleCreatePDF(`${date}-${customerName}.pdf`)} attachment={`${date}-${customerName}.pdf`}></RDEmail> : null} 
-
+      <div id='buttonDiv'>
+        <button className='footerButton' onClick={handleCreatePreview}>Preview Report</button>
+        <button className='footerButton' onClick={handleCreatePDF}>Save As PDF</button>
+        <button className='footerButton' onClick={handleClearForm}>Clear/Reset Form</button>
+        <button className='footerButton' onClick={handleOpenEmail}>Email Report...</button>
+      </div>
     </div>
   )
 }
 
-export default SewerReportHooks;
+export default SewerReportInput;

@@ -65,19 +65,28 @@ iframe {
   overflow: hidden;
 }
 
+#sewerReportInputDivContainer {
+  height: 100vh; 
+  overflow-y: scroll;
+}
+
 #sewerReportInputDiv {
   display: flex;
   flex-direction: column;
   align-items: left;
-  flex: 3;
+  /* flex: 3; */
   padding-left: 20px;
   padding-right: 20px;
+  overflow: hidden;
   overflow-y: scroll;
+  height: 100vh; 
 }
 
 #sewerReportPreviewDiv {
-  flex: 2;
   margin-left: 20px;
+  overflow: hidden;
+  /* overflow-y: scroll; */
+  height: 100vh; 
 }
 
 .alignedLabels {
